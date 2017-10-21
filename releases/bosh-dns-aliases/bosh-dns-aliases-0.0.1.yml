@@ -1,0 +1,13 @@
+name: bosh-dns-aliases
+version: 0.0.1
+commit_hash: a6b4e38
+uncommitted_changes: false
+jobs:
+- name: bosh-dns-aliases
+  version: e85426f711707b3dac08f4568aae0ed3f37d1a3c
+  fingerprint: e85426f711707b3dac08f4568aae0ed3f37d1a3c
+  sha1: 0c8d877a4bac04bc3cc8673203311e2408537e42
+license:
+  version: ab8299175db11152c8c65ed050fcf8cca92889f6
+  fingerprint: ab8299175db11152c8c65ed050fcf8cca92889f6
+  sha1: f76e955069934f4d7f677cb47e88f6dd404d4838
