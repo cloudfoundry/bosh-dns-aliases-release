@@ -7,18 +7,18 @@ def canonicalize(str)
 end
 
 aliases = p("aliases").map do |a|
-	[
-		a.fetch("domain"),
-		a.fetch("targets").map do |t|
-			[
-				t.fetch("query"),
-				canonicalize(t.fetch("instance_group")),
-				canonicalize(t.fetch("network")),
-				canonicalize(t.fetch("deployment")),
-				t.fetch("domain", spec.dns_domain_name),
-			].join(".")
-		end,
-	]
+  [
+    a.fetch("domain"),
+    a.fetch("targets").map do |t|
+      [
+        t.fetch("query"),
+        canonicalize(t.fetch("instance_group")),
+        canonicalize(t.fetch("network")),
+        canonicalize(t.fetch("deployment")),
+        t.fetch("domain", spec.dns_domain_name),
+      ].join(".")
+    end,
+  ]
 end
 
 JSON.pretty_generate(Hash[aliases])
