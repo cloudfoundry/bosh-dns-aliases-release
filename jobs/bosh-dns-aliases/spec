@@ -22,3 +22,6 @@ properties:
         deployment: cf_123
         network: default
         domain: bosh
+    - domain: tcp-router.service.cf.internal
+      targets:
+      - target: '*.tcp-router.default.cf.bosh'

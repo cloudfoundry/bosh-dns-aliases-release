@@ -10,6 +10,7 @@ aliases = p("aliases").map do |a|
   [
     a.fetch("domain"),
     a.fetch("targets").map do |t|
+      t.fetch("target", nil) ||
       [
         t.fetch("query"),
         canonicalize(t.fetch("instance_group")),
