@@ -109,5 +109,26 @@ describe 'bosh-dns-aliases job' do
         ]
       })
     end
+
+    it 'keeps wildcard "*" identifier as is' do
+      tpl_output = template.render(
+        'aliases' => [{
+          'domain' => 'credhub.cf.internal',
+          'targets' => [{
+            'query' => '*',
+            'instance_group' => '*Die*go_cell1^.*', # uppercase, _, special char
+            'deployment' => '*C*f_1^.*',
+            'network' => '*Defau*lt_123^.*',
+            'domain' => 'bosh1^', # not canonicalized
+          }]
+        }]
+      )
+
+      expect(JSON.parse(tpl_output)).to eq({
+        "credhub.cf.internal" => [
+          "*.*die*go-cell1*.*defau*lt-123*.*c*f-1*.bosh1^",
+        ]
+      })
+    end
   end
 end

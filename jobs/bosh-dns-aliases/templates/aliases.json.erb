@@ -3,7 +3,7 @@
 require 'json'
 
 def canonicalize(str)
-  str.downcase.gsub(/_/, "-").gsub(/[^a-z0-9\-]/, "")
+  str.downcase.gsub(/_/, "-").gsub(/[^a-z0-9\-\*]/, "")
 end
 
 aliases = p("aliases").map do |a|
