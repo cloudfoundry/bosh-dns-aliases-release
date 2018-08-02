@@ -1,0 +1,18 @@
+---
+name: bosh-dns-handlers
+
+templates:
+  handlers.json.erb: dns/handlers.json
+
+packages: []
+
+properties:
+  handlers:
+    description: List of generated handlers
+    example:
+    - domain: local.internal.
+      cache:
+        enabled: true
+      source:
+        type: http
+        url: http://some.endpoint.local
