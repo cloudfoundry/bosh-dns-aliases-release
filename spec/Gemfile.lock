@@ -11,5 +11,8 @@ PLATFORMS
 DEPENDENCIES
   bosh-template
 
+RUBY VERSION
+   ruby 2.7.3p183
+
 BUNDLED WITH
-   1.11.0
+   2.1.4
