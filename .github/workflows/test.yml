@@ -1,0 +1,31 @@
+name: test-with-ruby-versions
+on:
+  pull_request:
+    paths:
+      - '**/**'
+    branches: [ "master" ]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['2.7', '3.1']
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run tests
+      run: |
+        #!/bin/bash
+        set -x
+        RUBY_VERSION=$(ruby --version | sed 's/ruby \(.*\)p.*/\1/')
+        cd spec 
+        sed -i  "s/ruby .*/ruby '$RUBY_VERSION'/g" ./Gemfile
+        bundle install
+        gem install rspec
+        rspec bosh-dns-aliases_spec.rb
