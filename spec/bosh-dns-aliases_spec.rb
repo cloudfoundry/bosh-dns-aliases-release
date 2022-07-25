@@ -11,7 +11,7 @@ describe 'bosh-dns-aliases job' do
     let(:template) { job.template('dns/aliases.json') }
 
     it 'canonicalizes DNS labels' do
-      tpl_output = template.render(
+      tpl_output = template.render({
         'aliases' => [{
           'domain' => 'credhub.cf.internal',
           'targets' => [{
@@ -28,7 +28,7 @@ describe 'bosh-dns-aliases job' do
             'domain' => 'bosh2',
           }]
         }]
-      )
+      })
 
       expect(JSON.parse(tpl_output)).to eq({
         "credhub.cf.internal" => [
@@ -40,19 +40,19 @@ describe 'bosh-dns-aliases job' do
 
     it 'raises error if targets are not present' do
       expect {
-        tpl_output = template.render(
+        tpl_output = template.render({
           'aliases' => [{
             'domain' => 'credhub.cf.internal',
           }]
-        )
+        })
       }.to raise_error /key not found: "targets"/
     end
 
     it 'raises error if domain is not present' do
       expect {
-        tpl_output = template.render(
+        tpl_output = template.render({
           'aliases' => [{}]
-        )
+        })
       }.to raise_error /key not found: "domain"/
     end
 
@@ -90,7 +90,7 @@ describe 'bosh-dns-aliases job' do
     end
 
     it 'canonicalizes by all of special rules' do
-      tpl_output = template.render(
+      tpl_output = template.render({
         'aliases' => [{
           'domain' => 'credhub.cf.internal',
           'targets' => [{
@@ -101,7 +101,7 @@ describe 'bosh-dns-aliases job' do
             'domain' => 'bosh1^', # not canonicalized
           }]
         }]
-      )
+      })
 
       expect(JSON.parse(tpl_output)).to eq({
         "credhub.cf.internal" => [
@@ -111,7 +111,7 @@ describe 'bosh-dns-aliases job' do
     end
 
     it 'keeps wildcard "*" identifier as is' do
-      tpl_output = template.render(
+      tpl_output = template.render({
         'aliases' => [{
           'domain' => 'credhub.cf.internal',
           'targets' => [{
@@ -122,7 +122,7 @@ describe 'bosh-dns-aliases job' do
             'domain' => 'bosh1^', # not canonicalized
           }]
         }]
-      )
+      })
 
       expect(JSON.parse(tpl_output)).to eq({
         "credhub.cf.internal" => [
