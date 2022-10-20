@@ -22,3 +22,9 @@ properties:
         deployment: cf_123
         network: default
         domain: bosh
+    - domain: svc1.xxx.com
+      targets: ["10.193.78.10", "10.193.78.11"]
+    - domain: svc2.xxx.com
+      targets:
+      - "10.193.78.20"
+      - "10.193.78.21"
