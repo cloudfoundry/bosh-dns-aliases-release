@@ -1,0 +1,20 @@
+name: bosh-dns-aliases
+version: 0.0.5
+commit_hash: fc3e4ca
+uncommitted_changes: false
+jobs:
+- name: bosh-dns-aliases
+  version: 7d386eb3da56790cbc1c59888aff8e35ee98a67220713458712254b97d9b8fbd
+  fingerprint: 7d386eb3da56790cbc1c59888aff8e35ee98a67220713458712254b97d9b8fbd
+  sha1: sha256:181eb711241975bf1e48a0d0b5fb8d2f1a1af72773cc450c02deb550bae4d889
+  packages: []
+- name: bosh-dns-handlers
+  version: e19410d5afbd770824cd28d0eec056b0a70177594297ae04862087f64603fcc6
+  fingerprint: e19410d5afbd770824cd28d0eec056b0a70177594297ae04862087f64603fcc6
+  sha1: sha256:cb4c1764af543a9b76a36d13b56f47ab41847a8c6607ee9ccadba3e039a75b6e
+  packages: []
+license:
+  version: b59b3f53658d1e005646d4c779253eb7090e20e1cf61219a183b49556ba86d75
+  fingerprint: b59b3f53658d1e005646d4c779253eb7090e20e1cf61219a183b49556ba86d75
+  sha1: sha256:9e2bf959e0ecbb88bbd01538435ee737bd89c8dd08af2a68b3aa7fc5e46dd733
+no_compression: false
