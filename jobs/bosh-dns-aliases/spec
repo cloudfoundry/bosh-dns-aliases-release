@@ -22,3 +22,7 @@ properties:
         deployment: cf_123
         network: default
         domain: bosh
+    - domain: external.example.com
+      targets:
+      - ip: 192.168.2.15
+      - ip: 192.168.2.16
