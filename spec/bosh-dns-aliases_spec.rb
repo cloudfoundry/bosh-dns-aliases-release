@@ -56,6 +56,38 @@ describe 'bosh-dns-aliases job' do
       }.to raise_error /key not found: "domain"/
     end
 
+    it 'uses multiple IP targets directly' do
+      tpl_output = template.render({
+        'aliases' => [{
+          'domain' => 'foo.example.com',
+          'targets' => [{ 'ip' => '192.168.2.15' }, { 'ip' => '192.168.2.16' }]
+        }]
+      })
+
+      expect(JSON.parse(tpl_output)).to eq({
+        'foo.example.com' => ['192.168.2.15', '192.168.2.16']
+      })
+    end
+
+    it 'raises an error if IP and instance targets are mixed' do
+      expect {
+        template.render({
+          'aliases' => [{
+            'domain' => 'foo.example.com',
+            'targets' => [
+              { 'ip' => '192.168.2.15' },
+              {
+                'query' => '*',
+                'instance_group' => 'diego_cell1',
+                'deployment' => 'cf_123',
+                'network' => 'default',
+              },
+            ]
+          }]
+        })
+      }.to raise_error /must not mix IP and instance targets/
+    end
+
     it 'uses spec.dns_domain_name by default if target domain is not specified' do
       class CustomInstanceSpec < Bosh::Template::Test::InstanceSpec
         def to_h
