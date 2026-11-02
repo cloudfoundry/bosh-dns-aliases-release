@@ -3,7 +3,6 @@ on:
   pull_request:
     paths:
       - '**/**'
-    branches: [ "master" ]
 permissions:
   contents: read
 jobs:
